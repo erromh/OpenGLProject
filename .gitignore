@@ -46,7 +46,6 @@ cmake_install.cmake
 Makefile
 
 # Конфигурационные и временные файлы Visual Studio
-*.vcxproj*
 *.filters
 *.aps
 *.ncb
