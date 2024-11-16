@@ -9,7 +9,7 @@
 #include <vector>
 
 #include "Segment.h"
-#include "libs/tinyxml2/tinyxml2.h"
+#include "libs/tinyxml/tinyxml2.h"
 
 class XMLParser
 {

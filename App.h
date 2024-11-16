@@ -6,6 +6,7 @@
 #include <glm/glm.hpp>
 
 #include <filesystem>
+#include <fstream>
 #include <iostream>
 #include <memory>
 
@@ -22,14 +23,15 @@ class App
 
     std::unique_ptr<CameraController> _camera;
 
+    std::string fullPath;
+    const char *xmlFilePath;
+
+    static App *_instance;
 
   private:
-
     void handleKeys(unsigned char key);
 
-    static void keyboardCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
-
-    // const char *_xmlPath; // std::filesystem::current_path().string() + "/XmlData/test.xml";
+    static void keyboardCallback1(GLFWwindow *window, int key, int scancode, int action, int mods);
 
   public:
     App(int width, int height, const char *title);

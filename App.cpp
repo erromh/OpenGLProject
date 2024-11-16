@@ -1,5 +1,7 @@
 #include "App.h"
 
+App *App::_instance = nullptr;
+
 App::App(int width, int height, const char *title)
 {
     if (!glfwInit())
@@ -13,6 +15,8 @@ App::App(int width, int height, const char *title)
 
     _camera = std::make_unique<CameraController>(0.0f, 0.0f, 5.0f, 0.0f, 0.0f, -1.0f, 0.1f);
 
+    _instance = this;
+
     if (!_mainWindow)
     {
         std::cerr << "Error in create GLFW window!" << std::endl;
@@ -20,9 +24,13 @@ App::App(int width, int height, const char *title)
         return;
     }
 
+    std::filesystem::path projectRoot = std::filesystem::current_path();
+    fullPath = (projectRoot / "XmlData" / "test.xml").string();
+    xmlFilePath = fullPath.c_str();
+
     glfwMakeContextCurrent(_mainWindow);
 
-    glfwSetKeyCallback(_mainWindow, keyboardCallback);
+    glfwSetKeyCallback(_mainWindow, keyboardCallback1);
 }
 
 void App::handleKeys(unsigned char key)
@@ -30,10 +38,8 @@ void App::handleKeys(unsigned char key)
     _camera->isKeyPressed(key);
 }
 
-void App::keyboardCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
+void App::keyboardCallback1(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
-    static App *_instance;
-
     if (_instance && action == GLFW_PRESS)
     {
         _instance->handleKeys(key);
@@ -42,7 +48,7 @@ void App::keyboardCallback(GLFWwindow *window, int key, int scancode, int action
 
 void App::startApplication()
 {
-    _segments = XMLParser::loadSegment("OpenglProject/XmlData/test.xml");
+    _segments = XMLParser::loadSegment(xmlFilePath);
 
     while (!glfwWindowShouldClose(_mainWindow))
     {
