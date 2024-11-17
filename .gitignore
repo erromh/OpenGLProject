@@ -56,7 +56,6 @@ Makefile
 external/
 
 # Настройки OpenGL и временные файлы
-*.opengl32.dll
 *.glsl.cache
 *.shadercache
 *.temp
