@@ -9,7 +9,6 @@ Thumbs.db
 desktop.ini
 
 # Конфигурационные и временные файлы
-*.user
 *.suo
 *.VC.db
 *.VC.VC.opendb
@@ -54,7 +53,5 @@ Makefile
 external/
 
 # Настройки OpenGL и временные файлы
-*.glsl.cache
-*.shadercache
 *.temp
 *.log
